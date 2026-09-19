@@ -1,0 +1,127 @@
+@import '@fontsource-variable/inter';
+@import '@fontsource-variable/newsreader';
+
+:root {
+  --font-sans: 'Inter Variable', sans-serif;
+
+  --font-serif:
+    'Newsreader Variable',
+    Georgia,
+    serif;
+}
+
+
+/* =========================
+   Body
+   ========================= */
+
+body {
+  font-family: var(--font-sans);
+}
+
+
+/* =========================
+   Editorial headings
+   ========================= */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-serif);
+
+  color: var(--color-text-primary);
+
+  font-weight: 500;
+
+  line-height: 1.05;
+
+  letter-spacing: -0.025em;
+}
+
+
+h1 {
+  font-size: 64px;
+}
+
+
+h2 {
+  font-size: 40px;
+}
+
+
+h3 {
+  font-size: 28px;
+}
+
+
+/* =========================
+   Body copy
+   ========================= */
+
+p {
+  font-family: var(--font-sans);
+
+  font-size: 16px;
+
+  line-height: 1.7;
+
+  color: var(--color-text-secondary);
+}
+
+
+/* =========================
+   Eyebrow
+   ========================= */
+
+.eyebrow {
+  font-family: var(--font-sans);
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  line-height: 1.2;
+
+  letter-spacing: 0.055em;
+
+  text-transform: uppercase;
+
+  color: var(--color-blue-600);
+}
+
+
+/* =========================
+   Editorial emphasis
+   ========================= */
+
+.display-emphasis {
+  color: var(--color-blue-600);
+
+  font-family: var(--font-serif);
+
+  font-style: italic;
+
+  font-weight: 450;
+}
+
+
+/* =========================
+   Responsive
+   ========================= */
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 44px;
+  }
+
+  h2 {
+    font-size: 32px;
+  }
+
+  h3 {
+    font-size: 24px;
+  }
+}

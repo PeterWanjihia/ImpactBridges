@@ -1,0 +1,114 @@
+:root {
+  /* =========================
+     Brand colours
+     ========================= */
+
+  --color-navy-950: #00122f;
+  --color-navy-900: #071a38;
+  --color-navy-800: #10264a;
+
+  --color-blue-600: #0758e8;
+  --color-blue-500: #1769f3;
+  --color-blue-100: #eaf2ff;
+
+  --color-teal-600: #078f89;
+  --color-teal-500: #12a69d;
+  --color-teal-100: #e7f8f6;
+
+
+  /* =========================
+     Surfaces
+     ========================= */
+
+  --color-white: #ffffff;
+
+  --color-surface: #ffffff;
+  --color-surface-soft: #f7f9fc;
+  --color-surface-blue: #eef4fb;
+
+
+  /* =========================
+     Text
+     ========================= */
+
+  --color-text-primary: #071735;
+  --color-text-secondary: #566176;
+  --color-text-muted: #7a8497;
+  --color-text-inverse: #ffffff;
+
+
+  /* =========================
+     Borders
+     ========================= */
+
+  --color-border: #e1e7f0;
+  --color-border-strong: #c9d3e2;
+
+
+  /* =========================
+     Semantic colours
+     ========================= */
+
+  --color-success: #16845b;
+  --color-warning: #c47b14;
+  --color-danger: #c74646;
+
+
+  /* =========================
+     Spacing
+     ========================= */
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+  --space-32: 128px;
+
+
+  /* =========================
+     Layout
+     ========================= */
+
+  --container-max: 1280px;
+
+  --page-gutter-desktop: 32px;
+  --page-gutter-mobile: 20px;
+
+
+  /* =========================
+     Border radius
+     ========================= */
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+  --radius-round: 999px;
+
+
+  /* =========================
+     Shadows
+     ========================= */
+
+  --shadow-sm:
+    0 2px 8px rgb(7 23 53 / 0.06);
+
+  --shadow-md:
+    0 12px 32px rgb(7 23 53 / 0.12);
+
+
+  /* =========================
+     Motion
+     ========================= */
+
+  --transition-fast: 150ms ease;
+  --transition-base: 220ms ease;
+}
