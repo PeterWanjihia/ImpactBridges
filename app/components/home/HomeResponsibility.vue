@@ -129,7 +129,6 @@ const resources = [
 
 
 <style scoped>
-@import '@fontsource-variable/newsreader';
 
 
 /* =========================
@@ -168,9 +167,7 @@ const resources = [
     var(--color-text-primary);
 
   font-family:
-    'Newsreader Variable',
-    Georgia,
-    serif;
+    var(--font-serif);
 
   font-size:
     clamp(27px, 1.8vw, 32px);
@@ -197,7 +194,7 @@ const resources = [
     var(--font-sans);
 
   font-size:
-    10px;
+    var(--text-ui);
 
   line-height:
     1.4;
@@ -247,7 +244,7 @@ const resources = [
     var(--color-white);
 
   border:
-    1px solid #d7e3f5;
+    1px solid var(--color-border);
 
   border-radius:
     7px;
@@ -291,12 +288,10 @@ const resources = [
     var(--color-text-primary);
 
   font-family:
-    'Newsreader Variable',
-    Georgia,
-    serif;
+    var(--font-serif);
 
   font-size:
-    14px;
+    var(--text-ui);
 
   font-weight:
     600;
@@ -323,7 +318,7 @@ const resources = [
     var(--font-sans);
 
   font-size:
-    8.5px;
+    var(--text-caption);
 
   line-height:
     1.4;
@@ -354,7 +349,7 @@ const resources = [
     var(--font-sans);
 
   font-size:
-    8.5px;
+    var(--text-caption);
 
   font-weight:
     700;

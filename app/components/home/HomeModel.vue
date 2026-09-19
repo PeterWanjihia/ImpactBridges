@@ -48,7 +48,10 @@ const steps = [
 
 
 <template>
-  <section class="home-model">
+  <section
+    id="our-model"
+    class="home-model"
+  >
 
     <div
       class="home-model__wash"
@@ -170,7 +173,10 @@ const steps = [
           <img
             src="/images/home/model-students.png"
             alt="Two pupils walking towards their school"
+            width="1122"
+            height="1400"
             class="home-model__photo"
+            loading="lazy"
           >
 
         </div>
@@ -191,7 +197,6 @@ const steps = [
 
 
 <style scoped>
-@import '@fontsource-variable/newsreader';
 
 
 /* =========================
@@ -254,7 +259,7 @@ const steps = [
     var(--font-sans);
 
   font-size:
-    9px;
+    var(--text-caption);
 
   font-weight:
     700;
@@ -278,9 +283,7 @@ const steps = [
     var(--color-text-primary);
 
   font-family:
-    'Newsreader Variable',
-    Georgia,
-    serif;
+    var(--font-serif);
 
   font-size:
     clamp(32px, 2.2vw, 39px);
@@ -310,7 +313,7 @@ const steps = [
     var(--font-sans);
 
   font-size:
-    11px;
+    var(--text-body);
 
   line-height:
     1.4;
@@ -441,7 +444,7 @@ const steps = [
     var(--font-sans);
 
   font-size:
-    clamp(10.5px, 0.76vw, 11.5px);
+    clamp(0.8125rem, 0.9vw, 0.9375rem);
 
   font-weight:
     750;
@@ -460,7 +463,7 @@ const steps = [
 
 .model-step__description {
   max-width:
-    136px;
+    160px;
 
   margin:
     6px auto 0;
@@ -472,7 +475,7 @@ const steps = [
     var(--font-sans);
 
   font-size:
-    clamp(8.8px, 0.65vw, 9.8px);
+    var(--text-caption);
 
   font-weight:
     400;
@@ -772,15 +775,13 @@ const steps = [
     5px;
 
   color:
-    #52698d;
+    var(--color-text-muted);
 
   font-family:
-    'Newsreader Variable',
-    Georgia,
-    serif;
+    var(--font-serif);
 
   font-size:
-    12px;
+    var(--text-caption);
 
   font-style:
     italic;
@@ -885,7 +886,7 @@ const steps = [
 
   .home-model__quote {
     font-size:
-      10px;
+      var(--text-caption);
   }
 }
 
@@ -987,7 +988,7 @@ const steps = [
 
   .home-model__intro {
     font-size:
-      10px;
+      var(--text-caption);
   }
 
 
@@ -1020,7 +1021,7 @@ const steps = [
 
   .model-step__title {
     font-size:
-      11px;
+      var(--text-ui);
   }
 
 
@@ -1029,7 +1030,7 @@ const steps = [
       250px;
 
     font-size:
-      9px;
+      var(--text-caption);
   }
 }
 </style>

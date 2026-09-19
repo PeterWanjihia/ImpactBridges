@@ -2,9 +2,6 @@
 import {
   ArrowRight,
   ChevronUp,
-  Instagram,
-  Linkedin,
-  Youtube,
 } from 'lucide-vue-next'
 
 const exploreLinks = [
@@ -31,8 +28,22 @@ const legalLinks = [
   { label: 'Privacy Policy', to: '/privacy' },
   { label: 'Terms of Use', to: '/terms' },
   { label: 'Safeguarding Policy', to: '/safeguarding' },
-  { label: 'Cookie Policy', to: '/privacy' },
+  { label: 'Cookie Policy', to: '/privacy#cookies' },
 ]
+
+const email = ref('')
+const status = ref<'idle' | 'invalid' | 'unwired'>('idle')
+
+function onSubscribe() {
+  const value = email.value.trim()
+
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+    status.value = 'invalid'
+    return
+  }
+
+  status.value = 'unwired'
+}
 </script>
 
 <template>
@@ -51,6 +62,8 @@ const legalLinks = [
           <img
             src="/images/brand/logo-mark.png"
             alt=""
+            width="52"
+            height="58"
             class="footer-brand__logo"
           >
 
@@ -72,48 +85,9 @@ const legalLinks = [
           where they are.
         </p>
 
-        <div class="footer-brand__socials">
-          <a
-            href="#"
-            class="footer-social"
-            aria-label="Impact Bridge on LinkedIn"
-          >
-            <Linkedin
-              :size="17"
-              :stroke-width="1.8"
-            />
-          </a>
-
-          <a
-            href="#"
-            class="footer-social footer-social--x"
-            aria-label="Impact Bridge on X"
-          >
-            X
-          </a>
-
-          <a
-            href="#"
-            class="footer-social"
-            aria-label="Impact Bridge on Instagram"
-          >
-            <Instagram
-              :size="17"
-              :stroke-width="1.8"
-            />
-          </a>
-
-          <a
-            href="#"
-            class="footer-social"
-            aria-label="Impact Bridge on YouTube"
-          >
-            <Youtube
-              :size="18"
-              :stroke-width="1.8"
-            />
-          </a>
-        </div>
+        <p class="footer-brand__social-note">
+          Public social channels will be listed here when they are live.
+        </p>
       </div>
 
       <!-- Explore -->
@@ -186,7 +160,7 @@ const legalLinks = [
 
         <form
           class="footer-newsletter__form"
-          @submit.prevent
+          @submit.prevent="onSubscribe"
         >
           <label
             for="footer-email"
@@ -197,11 +171,15 @@ const legalLinks = [
 
           <input
             id="footer-email"
+            v-model="email"
             type="email"
             name="email"
             autocomplete="email"
+            required
             placeholder="Enter your email address"
             class="footer-newsletter__input"
+            :aria-invalid="status === 'invalid'"
+            aria-describedby="footer-email-status"
           >
 
           <button
@@ -218,8 +196,20 @@ const legalLinks = [
           </button>
         </form>
 
-        <p class="footer-newsletter__privacy">
-          We respect your privacy. Unsubscribe at any time.
+        <p
+          id="footer-email-status"
+          class="footer-newsletter__privacy"
+          aria-live="polite"
+        >
+          <template v-if="status === 'invalid'">
+            Enter a valid email address.
+          </template>
+          <template v-else-if="status === 'unwired'">
+            This list is not connected yet. Your address has not been stored.
+          </template>
+          <template v-else>
+            We will not add you to a list until this form is connected.
+          </template>
         </p>
       </div>
     </div>
@@ -262,7 +252,6 @@ const legalLinks = [
 </template>
 
 <style scoped>
-@import '@fontsource-variable/newsreader';
 
 /* =========================
    Footer shell
@@ -273,13 +262,7 @@ const legalLinks = [
 
   color: var(--color-white);
 
-  background:
-    linear-gradient(
-      180deg,
-      #081d39 0%,
-      #071a34 55%,
-      #06162d 100%
-    );
+  background: var(--color-navy-950);
 }
 
 
@@ -361,7 +344,7 @@ const legalLinks = [
 
   font-family: var(--font-sans);
 
-  font-size: 9px;
+  font-size: var(--text-caption);
 
   line-height: 1.4;
 }
@@ -376,7 +359,7 @@ const legalLinks = [
 
   font-family: var(--font-sans);
 
-  font-size: 11px;
+  font-size: var(--text-small);
 
   line-height: 1.62;
 }
@@ -386,44 +369,18 @@ const legalLinks = [
    Social links
    ========================= */
 
-.footer-brand__socials {
+.footer-brand__social-note {
+  max-width: 290px;
+
   margin-top: 22px;
 
-  display: flex;
+  color: rgb(255 255 255 / 0.7);
 
-  align-items: center;
-
-  gap: 10px;
-}
-
-
-.footer-social {
-  width: 36px;
-  height: 36px;
-
-  display: grid;
-  place-items: center;
-
-  color: rgb(255 255 255 / 0.92);
-
-  background: rgb(255 255 255 / 0.08);
-
-  border: 1px solid rgb(255 255 255 / 0.04);
-
-  border-radius: 50%;
-}
-
-
-.footer-social:hover {
-  background: rgb(255 255 255 / 0.13);
-}
-
-
-.footer-social--x {
   font-family: var(--font-sans);
 
-  font-size: 14px;
-  font-weight: 500;
+  font-size: var(--text-caption);
+
+  line-height: 1.5;
 }
 
 
@@ -448,7 +405,7 @@ const legalLinks = [
 
   color: rgb(255 255 255 / 0.96);
 
-  font-family: 'Newsreader Variable', Georgia, serif;
+  font-family: var(--font-serif);
 
   font-size: 18px;
   font-weight: 500;
@@ -462,7 +419,7 @@ const legalLinks = [
 
   font-family: var(--font-sans);
 
-  font-size: 10px;
+  font-size: var(--text-small);
 
   line-height: 1.3;
 }
@@ -491,7 +448,7 @@ const legalLinks = [
 
   font-family: var(--font-sans);
 
-  font-size: 10px;
+  font-size: var(--text-small);
 
   line-height: 1.55;
 }
@@ -524,7 +481,7 @@ const legalLinks = [
 
   font-family: var(--font-sans);
 
-  font-size: 10px;
+  font-size: var(--text-small);
 }
 
 
@@ -550,19 +507,19 @@ const legalLinks = [
 
   color: var(--color-white);
 
-  background: #2f6fda;
+  background: var(--color-blue-600);
 
   border-radius: 6px;
 
   font-family: var(--font-sans);
 
-  font-size: 11px;
+  font-size: var(--text-small);
   font-weight: 650;
 }
 
 
 .footer-newsletter__button:hover {
-  background: #3979df;
+  background: var(--color-blue-500);
 }
 
 
@@ -573,7 +530,7 @@ const legalLinks = [
 
   font-family: var(--font-sans);
 
-  font-size: 7.5px;
+  font-size: var(--text-caption);
 
   line-height: 1.4;
 }
@@ -611,7 +568,7 @@ const legalLinks = [
 
   font-family: var(--font-sans);
 
-  font-size: 8.5px;
+  font-size: var(--text-caption);
 }
 
 
@@ -634,36 +591,13 @@ const legalLinks = [
 
   font-family: var(--font-sans);
 
-  font-size: 8.5px;
+  font-size: var(--text-caption);
   font-weight: 600;
 }
 
 
 .site-footer__back-top:hover {
   color: var(--color-white);
-}
-
-
-/* =========================
-   Accessibility
-   ========================= */
-
-.sr-only {
-  position: absolute;
-
-  width: 1px;
-  height: 1px;
-
-  padding: 0;
-  margin: -1px;
-
-  overflow: hidden;
-
-  clip: rect(0, 0, 0, 0);
-
-  white-space: nowrap;
-
-  border: 0;
 }
 
 

@@ -131,7 +131,6 @@ import {
 
 
 <style scoped>
-@import '@fontsource-variable/newsreader';
 
 
 /* =========================
@@ -255,9 +254,7 @@ import {
     rgb(255 255 255 / 0.94);
 
   font-family:
-    'Newsreader Variable',
-    Georgia,
-    serif;
+    var(--font-serif);
 
   font-size:
     16px;
@@ -281,7 +278,7 @@ import {
     var(--font-sans);
 
   font-size:
-    5px;
+    var(--text-caption);
 
   font-weight:
     600;
@@ -487,9 +484,7 @@ import {
     rgb(255 255 255 / 0.96);
 
   font-family:
-    'Newsreader Variable',
-    Georgia,
-    serif;
+    var(--font-serif);
 
   font-size:
     clamp(35px, 2.7vw, 45px);
@@ -516,7 +511,7 @@ import {
     var(--font-sans);
 
   font-size:
-    12px;
+    var(--text-ui);
 
   line-height:
     1.4;
@@ -571,7 +566,7 @@ import {
     var(--font-sans);
 
   font-size:
-    13px;
+    var(--text-ui);
 
   font-weight:
     650;
@@ -586,13 +581,13 @@ import {
     var(--color-white);
 
   background:
-    #2f6fda;
+    var(--color-blue-600);
 }
 
 
 .final-cta__button--primary:hover {
   background:
-    #3979df;
+    var(--color-blue-500);
 }
 
 
@@ -632,13 +627,13 @@ import {
 
 .final-cta__motto p {
   color:
-    rgb(255 255 255 / 0.58);
+    rgb(255 255 255 / 0.72);
 
   font-family:
     var(--font-sans);
 
   font-size:
-    7px;
+    var(--text-caption);
 
   font-weight:
     700;

@@ -1,12 +1,61 @@
 <script setup lang="ts">
-import { Heart } from 'lucide-vue-next'
+import { Heart, Menu, X } from 'lucide-vue-next'
+
+const menuOpen = ref(false)
+const menuButton = ref<HTMLButtonElement | null>(null)
+const route = useRoute()
+
+const navLinks = [
+  { label: 'About', to: '/about' },
+  { label: 'Our Model', to: '/our-model' },
+  { label: 'Impact', to: '/impact' },
+  { label: 'Stories', to: '/stories' },
+  { label: 'Get Involved', to: '/get-involved' },
+  { label: 'Corporate Partnerships', to: '/corporate-partnerships' },
+  { label: 'Transparency', to: '/transparency' },
+]
+
+function closeMenu() {
+  menuOpen.value = false
+}
+
+function toggleMenu() {
+  menuOpen.value = !menuOpen.value
+}
+
+watch(
+  () => route.fullPath,
+  () => {
+    closeMenu()
+  },
+)
+
+watch(menuOpen, (open) => {
+  document.body.style.overflow = open ? 'hidden' : ''
+})
+
+function onKeydown(event: KeyboardEvent) {
+  if (event.key !== 'Escape' || !menuOpen.value) {
+    return
+  }
+
+  closeMenu()
+  menuButton.value?.focus()
+}
+
+onMounted(() => {
+  window.addEventListener('keydown', onKeydown)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('keydown', onKeydown)
+  document.body.style.overflow = ''
+})
 </script>
 
 <template>
   <header class="site-header">
     <div class="container site-header__inner">
-
-      <!-- Brand -->
       <NuxtLink
         to="/"
         class="site-header__brand"
@@ -15,6 +64,8 @@ import { Heart } from 'lucide-vue-next'
         <img
           src="/images/brand/logo-mark.png"
           alt=""
+          width="39"
+          height="48"
           class="site-header__mark"
         >
 
@@ -29,61 +80,32 @@ import { Heart } from 'lucide-vue-next'
         </p>
       </NuxtLink>
 
-
-      <!-- Navigation -->
       <nav
+        id="site-navigation"
         class="site-header__nav"
+        :class="{ 'is-open': menuOpen }"
         aria-label="Main navigation"
       >
-        <NuxtLink to="/about">
-          About
-        </NuxtLink>
-
-        <NuxtLink to="/our-model">
-          Our Model
-        </NuxtLink>
-
-        <NuxtLink to="/impact">
-          Impact
-        </NuxtLink>
-
-        <NuxtLink to="/stories">
-          Stories
-        </NuxtLink>
-
-        <NuxtLink to="/get-involved">
-          Get Involved
-        </NuxtLink>
-
-        <NuxtLink to="/corporate-partnerships">
-          Corporate Partnerships
-        </NuxtLink>
-
-        <NuxtLink to="/transparency">
-          Transparency
+        <NuxtLink
+          v-for="link in navLinks"
+          :key="link.to"
+          :to="link.to"
+        >
+          {{ link.label }}
         </NuxtLink>
       </nav>
 
-
-      <!-- Actions -->
       <div class="site-header__actions">
-
         <NuxtLink
           to="/about"
-          class="
-            site-header__button
-            site-header__button--outline
-          "
+          class="site-header__button site-header__button--outline"
         >
           Who We Are
         </NuxtLink>
 
         <NuxtLink
           to="/donate"
-          class="
-            site-header__button
-            site-header__button--primary
-          "
+          class="site-header__button site-header__button--primary"
         >
           <Heart
             :size="15"
@@ -94,14 +116,42 @@ import { Heart } from 'lucide-vue-next'
           Donate
         </NuxtLink>
 
+        <button
+          ref="menuButton"
+          type="button"
+          class="site-header__menu"
+          :aria-expanded="menuOpen"
+          aria-controls="site-navigation"
+          @click="toggleMenu"
+        >
+          <X
+            v-if="menuOpen"
+            :size="20"
+            :stroke-width="2"
+            aria-hidden="true"
+          />
+          <Menu
+            v-else
+            :size="20"
+            :stroke-width="2"
+            aria-hidden="true"
+          />
+
+          <span class="sr-only">
+            {{ menuOpen ? 'Close menu' : 'Open menu' }}
+          </span>
+        </button>
       </div>
     </div>
   </header>
 </template>
 
-
 <style scoped>
 .site-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+
   width: 100%;
 
   background: var(--color-white);
@@ -109,22 +159,14 @@ import { Heart } from 'lucide-vue-next'
   border-bottom: 1px solid var(--color-border);
 }
 
-
-/* =========================
-   Main row
-   ========================= */
-
 .site-header__inner {
-  height: 72px;
+  position: relative;
+
+  min-height: 72px;
 
   display: flex;
   align-items: center;
 }
-
-
-/* =========================
-   Brand
-   ========================= */
 
 .site-header__brand {
   display: flex;
@@ -132,7 +174,6 @@ import { Heart } from 'lucide-vue-next'
 
   flex-shrink: 0;
 }
-
 
 .site-header__mark {
   width: 39px;
@@ -142,7 +183,6 @@ import { Heart } from 'lucide-vue-next'
 
   flex-shrink: 0;
 }
-
 
 .site-header__wordmark {
   margin-left: 8px;
@@ -154,14 +194,13 @@ import { Heart } from 'lucide-vue-next'
 
   font-family: var(--font-sans);
 
-  font-size: 16px;
+  font-size: var(--text-body);
   font-weight: 800;
 
   line-height: 0.87;
 
   letter-spacing: -0.045em;
 }
-
 
 .site-header__tagline {
   margin-left: 14px;
@@ -174,7 +213,7 @@ import { Heart } from 'lucide-vue-next'
 
   font-family: var(--font-sans);
 
-  font-size: 8px;
+  font-size: var(--text-caption);
   font-weight: 500;
 
   line-height: 1.35;
@@ -182,27 +221,21 @@ import { Heart } from 'lucide-vue-next'
   white-space: nowrap;
 }
 
-
-/* =========================
-   Navigation
-   ========================= */
-
 .site-header__nav {
-  margin-left: 46px;
+  margin-left: 32px;
 
   display: flex;
   align-items: center;
 
-  gap: 22px;
+  gap: 18px;
 
   font-family: var(--font-sans);
 
-  font-size: 11px;
+  font-size: var(--text-small);
   font-weight: 600;
 
   line-height: 1;
 }
-
 
 .site-header__nav a {
   color: var(--color-text-primary);
@@ -210,20 +243,10 @@ import { Heart } from 'lucide-vue-next'
   white-space: nowrap;
 }
 
-
-.site-header__nav a:hover {
-  color: var(--color-blue-600);
-}
-
-
+.site-header__nav a:hover,
 .site-header__nav a.router-link-active {
   color: var(--color-blue-600);
 }
-
-
-/* =========================
-   Actions
-   ========================= */
 
 .site-header__actions {
   margin-left: auto;
@@ -236,9 +259,8 @@ import { Heart } from 'lucide-vue-next'
   flex-shrink: 0;
 }
 
-
 .site-header__button {
-  height: 38px;
+  height: 40px;
 
   display: inline-flex;
   align-items: center;
@@ -246,22 +268,21 @@ import { Heart } from 'lucide-vue-next'
 
   gap: 7px;
 
-  padding-inline: 17px;
+  padding-inline: 16px;
 
   border: 1px solid transparent;
 
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
 
   font-family: var(--font-sans);
 
-  font-size: 11px;
+  font-size: var(--text-small);
   font-weight: 650;
 
   line-height: 1;
 
   white-space: nowrap;
 }
-
 
 .site-header__button--outline {
   color: var(--color-text-primary);
@@ -271,13 +292,11 @@ import { Heart } from 'lucide-vue-next'
   border-color: var(--color-blue-600);
 }
 
-
 .site-header__button--outline:hover {
   color: var(--color-blue-600);
 
   background: var(--color-blue-100);
 }
-
 
 .site-header__button--primary {
   color: var(--color-white);
@@ -285,15 +304,25 @@ import { Heart } from 'lucide-vue-next'
   background: var(--color-blue-600);
 }
 
-
 .site-header__button--primary:hover {
   background: var(--color-blue-500);
 }
 
+.site-header__menu {
+  display: none;
 
-/* =========================
-   Responsive
-   ========================= */
+  width: 40px;
+  height: 40px;
+
+  align-items: center;
+  justify-content: center;
+
+  color: var(--color-text-primary);
+
+  border: 1px solid var(--color-border);
+
+  border-radius: var(--radius-sm);
+}
 
 @media (max-width: 1200px) {
   .site-header__tagline {
@@ -301,27 +330,59 @@ import { Heart } from 'lucide-vue-next'
   }
 
   .site-header__nav {
-    margin-left: 36px;
+    margin-left: 24px;
 
-    gap: 17px;
+    gap: 14px;
   }
 }
 
+@media (max-width: 1080px) {
+  .site-header__inner {
+    flex-wrap: wrap;
+  }
 
-@media (max-width: 1030px) {
+  .site-header__menu {
+    display: inline-flex;
+  }
+
   .site-header__nav {
     display: none;
+
+    order: 3;
+
+    flex: 1 0 100%;
+
+    margin: 0;
+    padding: 0 0 12px;
+
+    flex-direction: column;
+    align-items: stretch;
+
+    gap: 0;
   }
 
-  .site-header__actions {
-    margin-left: auto;
+  .site-header__nav.is-open {
+    display: flex;
+  }
+
+  .site-header__nav a {
+    padding: 14px 0;
+
+    font-size: var(--text-ui);
+
+    border-top: 1px solid var(--color-border);
   }
 }
 
+@media (max-width: 720px) {
+  .site-header__button--outline {
+    display: none;
+  }
+}
 
 @media (max-width: 640px) {
   .site-header__inner {
-    height: 64px;
+    min-height: 64px;
   }
 
   .site-header__mark {
@@ -333,8 +394,8 @@ import { Heart } from 'lucide-vue-next'
     font-size: 15px;
   }
 
-  .site-header__actions {
-    display: none;
+  .site-header__nav a {
+    padding-inline: 0;
   }
 }
 </style>

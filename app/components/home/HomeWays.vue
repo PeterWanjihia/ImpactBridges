@@ -8,9 +8,9 @@ import {
 
 const individualPoints = [
   'One-time or monthly giving',
-  'Secure payments',
-  'Instant receipt',
   'Direct classroom support',
+  'A receipt when payments are live',
+  'No dummy checkout on this site',
 ]
 
 const companyPoints = [
@@ -23,7 +23,10 @@ const companyPoints = [
 
 
 <template>
-  <section class="home-ways">
+  <section
+    id="get-involved"
+    class="home-ways"
+  >
 
     <div class="container home-ways__inner">
 
@@ -121,6 +124,9 @@ const companyPoints = [
             <img
               src="/images/home/give-individual.png"
               alt="Students learning together with a tablet"
+              width="1448"
+              height="900"
+              loading="lazy"
               class="giving-card__image"
             >
 
@@ -212,6 +218,9 @@ const companyPoints = [
             <img
               src="/images/home/company-partnership.png"
               alt="Professional working on a laptop"
+              width="1448"
+              height="900"
+              loading="lazy"
               class="giving-card__image"
             >
 
@@ -240,7 +249,6 @@ const companyPoints = [
 
 
 <style scoped>
-@import '@fontsource-variable/newsreader';
 
 
 /* =========================
@@ -279,9 +287,7 @@ const companyPoints = [
     var(--color-text-primary);
 
   font-family:
-    'Newsreader Variable',
-    Georgia,
-    serif;
+    var(--font-serif);
 
   font-size:
     clamp(28px, 2vw, 34px);
@@ -308,7 +314,7 @@ const companyPoints = [
     var(--font-sans);
 
   font-size:
-    10.5px;
+    var(--text-ui);
 
   line-height:
     1.45;
@@ -428,10 +434,10 @@ const companyPoints = [
 
 .giving-card__icon--green {
   color:
-    #087465;
+    var(--color-teal-600);
 
   background:
-    #e8f7f2;
+    var(--color-teal-100);
 }
 
 
@@ -440,9 +446,7 @@ const companyPoints = [
     var(--color-text-primary);
 
   font-family:
-    'Newsreader Variable',
-    Georgia,
-    serif;
+    var(--font-serif);
 
   font-size:
     20px;
@@ -472,7 +476,7 @@ const companyPoints = [
     var(--font-sans);
 
   font-size:
-    9px;
+    var(--text-caption);
 
   line-height:
     1.45;
@@ -512,7 +516,7 @@ const companyPoints = [
     var(--font-sans);
 
   font-size:
-    9px;
+    var(--text-caption);
 
   line-height:
     1.25;
@@ -530,7 +534,7 @@ const companyPoints = [
 
 .giving-card__list--green svg {
   color:
-    #087465;
+    var(--color-teal-600);
 }
 
 
@@ -540,10 +544,10 @@ const companyPoints = [
 
 .giving-card__button {
   width:
-    min(100%, 220px);
+    min(100%, 260px);
 
   height:
-    39px;
+    44px;
 
   margin-top:
     auto;
@@ -570,7 +574,7 @@ const companyPoints = [
     var(--font-sans);
 
   font-size:
-    10px;
+    var(--text-ui);
 
   font-weight:
     650;
@@ -591,13 +595,13 @@ const companyPoints = [
 
 .giving-card__button--green {
   background:
-    #0c6b5d;
+    var(--color-teal-600);
 }
 
 
 .giving-card__button--green:hover {
   background:
-    #09584d;
+    #06615c;
 }
 
 
@@ -689,12 +693,10 @@ const companyPoints = [
     var(--color-white);
 
   font-family:
-    'Newsreader Variable',
-    Georgia,
-    serif;
+    var(--font-serif);
 
   font-size:
-    11px;
+    var(--text-caption);
 
   font-style:
     italic;

@@ -2,8 +2,15 @@
 import {
   School,
 } from 'lucide-vue-next'
+import type { Component } from 'vue'
 
-const evidence = [
+type EvidenceItem = {
+  description: string
+  value?: string
+  icon?: Component
+}
+
+const evidence: EvidenceItem[] = [
   {
     value: '60%',
     description:
@@ -26,7 +33,10 @@ const evidence = [
 
 
 <template>
-  <section class="challenge">
+  <section
+    id="challenge"
+    class="challenge"
+  >
     <div class="container challenge__inner">
 
       <!-- =========================
@@ -106,8 +116,11 @@ const evidence = [
 
         <img
           src="/images/home/challenge.png"
-          alt="School environment in Uganda"
+          alt="Pupils walking toward a rural school building in Uganda"
+          width="1448"
+          height="900"
           class="challenge__image"
+          loading="lazy"
         >
 
       </div>
@@ -118,7 +131,6 @@ const evidence = [
 
 
 <style scoped>
-@import '@fontsource-variable/newsreader';
 
 
 /* =========================
@@ -181,7 +193,7 @@ const evidence = [
     var(--font-sans);
 
   font-size:
-    10px;
+    var(--text-caption);
 
   font-weight:
     700;
@@ -206,9 +218,7 @@ const evidence = [
     var(--color-text-primary);
 
   font-family:
-    'Newsreader Variable',
-    Georgia,
-    serif;
+    var(--font-serif);
 
   /*
     Slightly quieter than before.
@@ -248,7 +258,7 @@ const evidence = [
     var(--font-sans);
 
   font-size:
-    11px;
+    var(--text-body);
 
   line-height:
     1.58;
@@ -316,9 +326,7 @@ const evidence = [
     var(--color-blue-600);
 
   font-family:
-    'Newsreader Variable',
-    Georgia,
-    serif;
+    var(--font-serif);
 
   font-size:
     29px;
@@ -368,7 +376,7 @@ const evidence = [
     var(--font-sans);
 
   font-size:
-    8.3px;
+    var(--text-caption);
 
   line-height:
     1.38;
@@ -390,7 +398,7 @@ const evidence = [
     var(--font-sans);
 
   font-size:
-    8.2px;
+    var(--text-caption);
 
   font-weight:
     450;
@@ -430,7 +438,7 @@ const evidence = [
     This trims another ~6%.
   */
   height:
-    282px;
+    300px;
 
   display:
     block;
@@ -536,7 +544,7 @@ const evidence = [
       7px;
 
     font-size:
-      8px;
+      var(--text-caption);
   }
 
 

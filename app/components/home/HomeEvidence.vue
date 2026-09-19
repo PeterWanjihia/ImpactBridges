@@ -43,7 +43,10 @@ const stats = [
 
 
 <template>
-  <section class="home-evidence">
+  <section
+    id="impact"
+    class="home-evidence"
+  >
     <div class="container home-evidence__inner">
 
       <!-- =========================
@@ -114,8 +117,11 @@ const stats = [
 
         <img
           src="/images/home/evidence-student.png"
-          alt="Student in a classroom"
+          alt="Namulava, a P7 student at Bwikya Primary School, in her classroom"
+          width="1448"
+          height="900"
           class="student-story__image"
+          loading="lazy"
         >
 
         <div
@@ -163,7 +169,6 @@ const stats = [
 
 
 <style scoped>
-@import '@fontsource-variable/newsreader';
 
 
 /* =========================
@@ -210,9 +215,7 @@ const stats = [
     var(--color-text-primary);
 
   font-family:
-    'Newsreader Variable',
-    Georgia,
-    serif;
+    var(--font-serif);
 
   font-size:
     clamp(30px, 2.3vw, 39px);
@@ -255,7 +258,7 @@ const stats = [
     var(--font-sans);
 
   font-size:
-    9px;
+    var(--text-caption);
 
   font-weight:
     650;
@@ -320,9 +323,7 @@ const stats = [
     var(--color-blue-600);
 
   font-family:
-    'Newsreader Variable',
-    Georgia,
-    serif;
+    var(--font-serif);
 
   font-size:
     25px;
@@ -337,7 +338,7 @@ const stats = [
 
 .evidence-stat__label {
   max-width:
-    72px;
+    96px;
 
   margin-top:
     4px;
@@ -349,7 +350,7 @@ const stats = [
     var(--font-sans);
 
   font-size:
-    7.5px;
+    var(--text-caption);
 
   line-height:
     1.3;
@@ -392,7 +393,7 @@ const stats = [
     var(--font-sans);
 
   font-size:
-    9px;
+    var(--text-caption);
 
   font-weight:
     650;
@@ -413,8 +414,8 @@ const stats = [
   position:
     relative;
 
-  height:
-    222px;
+  min-height:
+    280px;
 
   overflow:
     hidden;
@@ -502,9 +503,7 @@ const stats = [
     var(--color-white);
 
   font-family:
-    'Newsreader Variable',
-    Georgia,
-    serif;
+    var(--font-serif);
 
   font-size:
     25px;
@@ -531,7 +530,7 @@ const stats = [
     var(--font-sans);
 
   font-size:
-    8.5px;
+    var(--text-caption);
 
   font-weight:
     650;
@@ -552,7 +551,7 @@ const stats = [
     var(--font-sans);
 
   font-size:
-    8px;
+    var(--text-small);
 
   line-height:
     1.5;
@@ -579,7 +578,7 @@ const stats = [
     var(--font-sans);
 
   font-size:
-    8.5px;
+    var(--text-caption);
 
   font-weight:
     650;
@@ -607,8 +606,8 @@ const stats = [
 
 
   .student-story {
-    height:
-      250px;
+    min-height:
+      280px;
   }
 }
 

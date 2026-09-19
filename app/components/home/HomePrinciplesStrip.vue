@@ -40,9 +40,8 @@ const principles = [
 
 <template>
   <section class="principles-strip">
-    <div class="container principles-strip__inner">
-
-      <article
+    <ul class="container principles-strip__inner">
+      <li
         v-for="principle in principles"
         :key="principle.title"
         class="principle"
@@ -57,17 +56,16 @@ const principles = [
         </div>
 
         <div class="principle__content">
-          <h3 class="principle__title">
+          <p class="principle__title">
             {{ principle.title }}
-          </h3>
+          </p>
 
           <p class="principle__description">
             {{ principle.description }}
           </p>
         </div>
-      </article>
-
-    </div>
+      </li>
+    </ul>
   </section>
 </template>
 
@@ -76,8 +74,7 @@ const principles = [
 .principles-strip {
   width: 100%;
 
-  background:
-    #f7f9fc;
+  background: var(--color-surface-soft);
 
   border-bottom:
     1px solid var(--color-border);
@@ -152,15 +149,11 @@ const principles = [
   display: grid;
   place-items: center;
 
-  color:
-    var(--color-blue-600);
+  color: var(--color-blue-600);
 
-  background:
-    #eaf2ff;
+  background: var(--color-blue-100);
 
-  border:
-    1px solid
-    #dbe8ff;
+  border: 1px solid #dbe8ff;
 
   border-radius:
     50%;
@@ -177,13 +170,15 @@ const principles = [
 
 
 .principle__title {
+  margin: 0;
+
   color:
     var(--color-text-primary);
 
   font-family:
     var(--font-sans);
 
-  font-size: 12px;
+  font-size: var(--text-ui);
 
   font-weight: 700;
 
@@ -195,7 +190,7 @@ const principles = [
 
 
 .principle__description {
-  max-width: 180px;
+  max-width: 220px;
 
   margin-top: 3px;
 
@@ -205,7 +200,7 @@ const principles = [
   font-family:
     var(--font-sans);
 
-  font-size: 9px;
+  font-size: var(--text-caption);
 
   line-height: 1.45;
 }
@@ -269,14 +264,14 @@ const principles = [
 
 
   .principle__title {
-    font-size: 12px;
+    font-size: var(--text-ui);
   }
 
 
   .principle__description {
     max-width: none;
 
-    font-size: 9px;
+    font-size: var(--text-caption);
   }
 }
 </style>
