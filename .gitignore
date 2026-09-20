@@ -17,6 +17,7 @@ node_modules
 npm-debug.log*
 yarn-debug.log*
 pnpm-debug.log*
+*:Zone.Identifier
 
 # Editor / OS
 .vscode
