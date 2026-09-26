@@ -2,24 +2,30 @@
 useSeoMeta({
   title: 'Stories',
   description:
-    'Classroom stories from the communities Impact Bridge works with.',
+    'Learners, teachers, classrooms and partners. Every Impact Bridge story is one lesson, one voice and one classroom at a time.',
+  ogTitle: 'Stories — Impact Bridge',
+  ogDescription:
+    'Every classroom holds more than one story.',
 })
 </script>
 
 <template>
-  <LayoutInnerPage
-    eyebrow="Stories"
-    title="The work, in a classroom."
-    lede="We will publish more stories as the programme grows. The first is from the Kiryandongo pilot."
+  <main
+    id="main"
+    class="stories-page"
   >
-    <p>
-      <NuxtLink to="/stories/namulava">
-        Namulava, P7 student at Bwikya Primary School
-      </NuxtLink>
-    </p>
-
-    <p>
-      “I feel like I can now finish my schooling.”
-    </p>
-  </LayoutInnerPage>
+    <StoriesHero />
+    <StoriesCatalog />
+    <StoriesVoices />
+    <StoriesEssay />
+    <StoriesPattern />
+    <StoriesField />
+    <StoriesFinalCta />
+  </main>
 </template>
+
+<style scoped>
+.stories-page {
+  background: var(--color-white);
+}
+</style>

@@ -9,9 +9,8 @@ const exploreLinks = [
   { label: 'Our Model', to: '/our-model' },
   { label: 'Our Impact', to: '/impact' },
   { label: 'Stories', to: '/stories' },
-  { label: 'Get Involved', to: '/get-involved' },
   { label: 'Corporate Partnerships', to: '/corporate-partnerships' },
-  { label: 'Transparency', to: '/transparency' },
+  { label: 'Accountability', to: '/transparency' },
 ]
 
 const resourceLinks = [

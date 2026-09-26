@@ -1,42 +1,31 @@
 <script setup lang="ts">
 useSeoMeta({
-  title: 'Equipment donation guidelines',
+  title: 'Donate equipment',
   description:
-    'Only send devices that can actually serve a classroom. Unsuitable hardware is a cost, not a gift.',
+    'Offer suitable computers, displays and hub equipment. Do not ship anything before Impact Bridge approves it.',
+  ogTitle: 'Donate equipment — Impact Bridge',
+  ogDescription:
+    'Turn suitable technology into supported learning. Approval comes before any shipment.',
 })
 </script>
 
 <template>
-  <LayoutInnerPage
-    eyebrow="Equipment"
-    title="Donate technology that can be used."
-    lede="A crate of broken laptops is not a donation. It is a disposal problem for a school."
+  <main
+    id="main"
+    class="equipment-page"
   >
-    <p>
-      We accept equipment when it is suitable for classroom use, in
-      working condition, and possible to support locally. If we cannot
-      say yes to those three, we will say no.
-    </p>
-
-    <ul>
-      <li>Working devices only — not e-waste</li>
-      <li>Appropriate for learners and teachers, not specialist kit nobody can maintain</li>
-      <li>Chargers, power, and basic documentation included where they exist</li>
-      <li>A conversation first, so we do not ship hardware into a school that cannot use it</li>
-    </ul>
-
-    <p>
-      Full model-by-model guidelines are not published here yet. Contact
-      us before you send anything.
-    </p>
-
-    <div class="actions">
-      <NuxtLink
-        to="/contact"
-        class="button button--primary"
-      >
-        Contact us first
-      </NuxtLink>
-    </div>
-  </LayoutInnerPage>
+    <EquipmentHero />
+    <EquipmentNeeds />
+    <EquipmentJourney />
+    <EquipmentRules />
+    <EquipmentDonors />
+    <EquipmentOffer />
+    <EquipmentAsk />
+  </main>
 </template>
+
+<style scoped>
+.equipment-page {
+  background: var(--color-white);
+}
+</style>

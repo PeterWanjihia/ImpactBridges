@@ -24,7 +24,7 @@ const companyPoints = [
 
 <template>
   <section
-    id="get-involved"
+    id="ways"
     class="home-ways"
   >
 
